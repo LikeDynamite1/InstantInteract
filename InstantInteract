@@ -1,0 +1,25 @@
+--LikeDynamite1 was here pls don't remove this
+local plr = game:GetService("Players")
+local rs = game:GetService("RunService")
+local uis = game:GetService("UserInputService")
+
+local client = plr.LocalPlayer
+
+local function mpp(instant)
+	if instant and instant:IsA("ProximityPrompt") then
+		instant.HoldDuration = 0
+	end
+end
+
+rs.Heartbeat:Connect(function()
+	for _, get in ipairs(workspace:GetDescendants()) do
+		if get:IsA("ProximityPrompt") then
+			mpp(get)
+		end
+	end
+end)
+
+uis.InputBegan:Connect(function(input, gameProcessedEvent)
+	if not gameProcessedEvent and input.UserInputType == Enum.UserInputType.Keyboard then
+	end
+end)
